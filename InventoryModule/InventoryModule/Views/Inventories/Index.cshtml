@@ -1,0 +1,89 @@
+﻿@model IEnumerable<InventoryModule.Models.Inventory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+
+    @Ajax.ActionLink("Create New", "Create", new AjaxOptions()
+{
+HttpMethod = "GET",
+UpdateTargetId = "inv",
+InsertionMode = InsertionMode.Replace
+})
+</p>
+<div id="inv">
+
+</div>
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InventoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.InventoryImage)" alt="" width="40" height="40" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InventoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Ajax.ActionLink("Edit", "Edit",new { id = item.InventoryId }, new AjaxOptions()
+{
+HttpMethod = "GET",
+UpdateTargetId = "inv",
+InsertionMode = InsertionMode.Replace
+})
+                @Ajax.ActionLink("Details", "Details",new { id = item.InventoryId }, new AjaxOptions()
+{
+HttpMethod = "GET",
+UpdateTargetId = "inv",
+InsertionMode = InsertionMode.Replace
+})
+                @Ajax.ActionLink("Delete", "Delete",new { id = item.InventoryId }, new AjaxOptions()
+{
+HttpMethod = "GET",
+UpdateTargetId = "inv",
+InsertionMode = InsertionMode.Replace
+})
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.InventoryId }) |
+                @Html.ActionLink(, new { id = item.InventoryId }) |
+                @Html.ActionLink(, new { id = item.InventoryId })*@
+            </td>
+        </tr>
+    }
+
+</table>
