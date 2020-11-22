@@ -17,7 +17,8 @@ namespace InventoryModule.Controllers
         // GET: Inventories
         public ActionResult Index()
         {
-            return View(db.Inventories.ToList());
+            ViewBag.Name = "zy";
+            return View("Index",db.Inventories.ToList());
         }
 
         // GET: Inventories/Details/5
@@ -27,6 +28,7 @@ namespace InventoryModule.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.ID = id;
             Inventory inventory = db.Inventories.Find(id);
             if (inventory == null)
             {
@@ -65,6 +67,7 @@ namespace InventoryModule.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.ID = id;
             Inventory inventory = db.Inventories.Find(id);
             if (inventory == null)
             {
@@ -96,6 +99,7 @@ namespace InventoryModule.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.ID = id;
             Inventory inventory = db.Inventories.Find(id);
             if (inventory == null)
             {
